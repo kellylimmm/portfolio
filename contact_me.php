@@ -1,18 +1,15 @@
-Thanks for your message!
-
 <?php
 
-	$userName 		= $_POST['name'];
-	$userEmail	 	= $_POST['email'];
-	$userMessage 		= $_POST['message'];
+if (isset($_POST['submit'])) {
+$name = $_POST['name'];
+$subject = $_POST['subject'];
+$mailFrom = $_POST['mail'];
+$message = $_POST['message'];
 
-	$to 			= "kellylim.06@gmail.com";
-	$subject 		= "Email from my website";
-	$body 			= "Information Submitted:";
+$mailTo = "kellylim.06@gmail.com";
+$headers = "From: ".$mailFrom;
+$txt = "You have received an e-mail from ".$name.".\n\n".$message;
 
-	$body .= "\r\n Name: " . $userName;
-	$body .= "\r\n Email: " . $userEmail;
-	$body .= "\r\n Message: " . $userMessage;
-
-	mail($to, $subject, $body);
-?>
+mail($mailTo, $subject, $txt, $headers);
+header("Location: index.php?mailsend");
+}
